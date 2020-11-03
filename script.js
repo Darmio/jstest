@@ -34,7 +34,7 @@ for(let i=0; i<2; i++){
            }
 }
 }
-//chooseExpenses();
+chooseExpenses();
 
 function chooseOptExpenses(){
     for(let i=0; i<3; i++){
@@ -74,9 +74,9 @@ function checkSavings(){
     }
 }
 
-//detectDayBudget();
-//detectLevel();
-//checkSavings();
+detectDayBudget();
+detectLevel();
+checkSavings();
  /// example circuit
 let c = 4
 function addX(x) {
