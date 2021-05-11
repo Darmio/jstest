@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+       <title>Pay</title>
+       <script type="text/javascript" src="https://js.stripe.com/v2/"></script>
+       <script type="text/javascript">
+         Stripe.setPublishableKey('your_public_key');
+       </script>   
+   </head>
+  <body>
+	<form action="" method="POST" id="payment-form">
+        <span class="payment-errors"></span>
+        <label>Card Number</label>
+        <input type="text" size="20" data-stripe="number">
+        <label>Expiration (MM/YY)</label>     
+        <input type="text" size="2" data-stripe="exp_month">
+        <input type="text" size="2" data-stripe="exp_year">
+        <label>CVC</label>
+        <input type="text" size="4" data-stripe="cvc">
+        <input type="submit" class="submit" value="Submit">
+    </form>
+    <div class="column"></div>
+  </body>
+
+  <script>
+    $(function() {
+    var $form = $('#payment-form');
+    $form.submit(function(event) {
+      // Отключим кнопку, чтобы предотвратить повторные клики
+      $form.find('.submit').prop('disabled', true);
+  
+      // Запрашиваем token у Stripe
+      Stripe.card.createToken($form, stripeResponseHandler);
+  
+      // Запретим форме submit
+      return false;
+    });
+  });
+  
+  function stripeResponseHandler(status, response) {
+    // Получим форму:
+    let form = document.getElementById('payment-form');
+  
+    if (response.error) { // Problem!
+  
+      // Показываем ошибки в форме:
+      form.find('.payment-errors').text(response.error.message);
+      form.find('.submit').prop('disabled', false); // Разрешим submit
+  
+    } else { // Token был создан
+  
+      // Получаем token id:
+      token = response.id;
+  
+      // Вставим token в форму, чтобы при submit он пришел на сервер:
+      form.append($('<input type="hidden" name="stripeToken">').val(token));
+  
+      // Сабмитим форму:
+      $form.get(0).submit();
+    }
+  };
+</script> 
+</html>

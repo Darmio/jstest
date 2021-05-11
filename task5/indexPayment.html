@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+       <title>Pay</title>
+       <script type="text/javascript" src="https://js.stripe.com/v2/"></script>
+       <script type="text/javascript">
+         Stripe.setPublishableKey('your_public_key');
+       </script>   
+   </head>
+  <body>
+    <button type="button" id="checkout-button">Checkout</button>
+    <script type="text/javascript">
+      var stripe = Stripe('pk_test_TYooMQauvdEDq54NiTphI7jx');
+      var checkoutButton = document.getElementById('checkout-button');
+
+      checkoutButton.addEventListener('click', function() {
+        fetch('/create-checkout-session', {
+          method: 'POST',
+        })
+        .then(function(response) {
+          return response.json();
+        })
+        .then(function(session) {
+          return stripe.redirectToCheckout({ sessionId: session.id });
+        })
+        .then(function(result) {
+          if (result.error) {
+            alert(result.error.message);
+          }
+        })
+        .catch(function(error) {
+          console.error('Error:', error);
+        });
+      });
+    </script>
+  </body>
+</html>
