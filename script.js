@@ -82,8 +82,18 @@ console.log(appData.income.forEach(function(item,i,arr){
 } ));
 
 for(let key in appData){
+    alert("Our program income:");
+    alert(key+'='+appData[key]);
     console.log(key+'='+appData[key]);
 }
+
+
+///________________HTML___________________
+let box = document.getElementById('box'),
+   circ = document.getElementsByClassName('circle');
+    btn  = document.getElementsByTagName('button');
+    hear = document.querySelectorAll('.wrapper .heart');
+    oneHeart = document.querySelector('.heart');
  /// example circuit
 let c = 4
 function addX(x) {
