@@ -4,13 +4,13 @@ let btnBeg = document.getElementById('start');
 
 //var el = document.getElementsByClassName("result-table");
 let masValue = findByText("-value$","result");
-let item = document.getElementsByClassName("expenses-item");
+let item_ = document.getElementsByClassName("expenses-item");
 var btn = document.getElementsByTagName("button");
 var btnAppr = btn[1];
 var btnCalc = btn[2];
 var itemOpt = document.querySelectorAll(".optionalexpenses-item");
 var typeText = document.querySelectorAll('[type=text]');
-console.log(item.length);
+console.log(item_.length);
 console.log(itemOpt.length);
 console.log(typeText);
 btnCalc.style.fontFamily = "Franklin Gothic Heavy";
