@@ -22,6 +22,7 @@ let startBtn = document.getElementById('start'),
     yearValue = document.querySelector('.year-value'),
     monthValue = document.querySelector('.month-value'),
     dayValue = document.querySelector('.day-value');
+    
 
     let arrBtn = document.getElementsByTagName('button');
 
@@ -107,6 +108,7 @@ let startBtn = document.getElementById('start'),
     }
 
     activeBtn(false);
+
    // start();
     //ebugger;
     let appData  = {
